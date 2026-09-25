@@ -97,3 +97,45 @@ fail: WebApiHome3.Controllers.StudentsController[0]
 ## Вывод
 
 DI устраняет жёсткую связь `StudentsController` с конкретным сервисом, а `ILogger` делает выполнение API наблюдаемым. `Transient` создаёт новый сервис при каждом разрешении зависимости, тогда как `Singleton` хранит один общий экземпляр и требует внимательного отношения к состоянию и потокобезопасности.
+
+## Скриншоты выполнения
+
+### Регистрация зависимости
+
+В `Program.cs` зарегистрирован сервис с жизненным циклом Transient.
+
+![Регистрация IStudentService в Program.cs](docs/program-registration.png)
+
+### Constructor Injection
+
+Контроллер получает `IStudentService` и `ILogger<StudentsController>` через конструктор.
+
+![Внедрение зависимостей в StudentsController](docs/controller-injection.png)
+
+### Swagger: доступные endpoint
+
+![Список endpoint в Swagger UI](docs/swagger-api.png)
+
+### Swagger: список студентов
+
+После **Try it out → Execute** `GET /api/students` возвращает `200 OK` и три записи.
+
+![GET всех студентов — 200 OK](docs/swagger-get.png)
+
+### Swagger: студент с существующим идентификатором
+
+После **Try it out → Execute** `GET /api/students/1` возвращает студента Aruzhan Saparova.
+
+![GET студента по Id — 200 OK](docs/swagger-get-by-id.png)
+
+### Swagger: отсутствующий студент
+
+После **Try it out → Execute** `GET /api/students/999` возвращает `404 Not Found`.
+
+![GET отсутствующего студента — 404 Not Found](docs/swagger-404.png)
+
+### Вывод приложения
+
+Настоящий вывод запущенного приложения: `Information` для списка, `Warning` для отсутствующего Id и `Error` для некорректного Id.
+
+![Консоль приложения с сообщениями журнала](docs/logs.png)
