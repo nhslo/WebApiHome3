@@ -100,18 +100,6 @@ DI устраняет жёсткую связь `StudentsController` с конк
 
 ## Скриншоты выполнения
 
-### Регистрация зависимости
-
-В `Program.cs` зарегистрирован сервис с жизненным циклом Transient.
-
-![Регистрация IStudentService в Program.cs](docs/program-registration.png)
-
-### Constructor Injection
-
-Контроллер получает `IStudentService` и `ILogger<StudentsController>` через конструктор.
-
-![Внедрение зависимостей в StudentsController](docs/controller-injection.png)
-
 ### Swagger: доступные endpoint
 
 ![Список endpoint в Swagger UI](docs/swagger-api.png)
@@ -138,4 +126,4 @@ DI устраняет жёсткую связь `StudentsController` с конк
 
 Настоящий вывод запущенного приложения: `Information` для списка, `Warning` для отсутствующего Id и `Error` для некорректного Id.
 
-![Консоль приложения с сообщениями журнала](docs/logs.png)
+![PowerShell с сообщениями журнала](docs/logs-powershell.png)
